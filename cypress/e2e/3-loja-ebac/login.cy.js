@@ -61,6 +61,15 @@ it('Deve fazer login com sucesso - Fixture', () => {
 
     })
 
+
+
+});
+
+it.only('Deve fazer login com sucesso - Comando Custumizado', () => {
+        
+cy.login(perfil.email, perfil.senha)
+cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
+
 });
 
 })
