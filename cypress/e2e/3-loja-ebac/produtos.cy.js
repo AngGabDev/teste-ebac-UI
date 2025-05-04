@@ -1,20 +1,35 @@
 ///<reference types="cypress"/>
 
+import produtosPage from "../../support/page-objects/produtos.page";
+
 describe('Funcionalidade: Produtos', () => {
     
     beforeEach(() => {
-        cy.visit('produtos')
+        produtosPage.visitarUrl()
     });
 
     it('Deve selecionar um produto da lista', () => {
       
-        cy.get('.product-block')
-        //.first() ou .last()
-        //.contains()
-        .eq(1)
-        .click()
+       produtosPage.buscarProdutoLista('Abominable Hoodie')
 
         cy.get('#tab-title-description > a').should('exist')
 
+    });
+
+    it.only('Deve buscar um produto com sucesso', () => {
+        
+        let produto = 'Apollo Running Short'
+
+        produtosPage.buscarProduto(produto)
+        cy.get('.product_title').should('contain', produto)
+
+    });
+
+    it('Deve visitar a página de um produto', () => {
+        
+    });
+
+    it('Deve adicionar um produto ao carrinho', () => {
+        
     });
 });
